@@ -246,6 +246,44 @@ ReadTrainerPartyPieces:
 	pop hl
 .no_moves
 
+; Custom DVs affect stats, so recalculate them after TryAddMonToParty
+	ld a, [wOtherTrainerType]
+	and TRAINERTYPE_DVS
+	jr z, .no_stat_recalc
+
+	push hl
+
+	ld a, [wOTPartyCount]
+	dec a
+	ld hl, wOTPartyMon1MaxHP
+	call GetPartyLocation
+	ld d, h
+	ld e, l
+
+	ld a, [wOTPartyCount]
+	dec a
+	ld hl, wOTPartyMon1StatExp - 1
+	call GetPartyLocation
+
+; recalculate stats
+	ld b, TRUE
+	push de
+	predef CalcMonStats
+	pop hl
+
+; copy max HP to current HP
+	inc hl
+	ld c, [hl]
+	dec hl
+	ld b, [hl]
+	dec hl
+	ld [hl], c
+	dec hl
+	ld [hl], b
+
+	pop hl
+.no_stat_recalc
+
 	jp .loop
 
 ComputeTrainerReward:
