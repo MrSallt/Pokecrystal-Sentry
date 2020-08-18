@@ -2241,8 +2241,9 @@ wOtherDecoration::    db
 	ds 3
 wCurEnemyItem:: db
 ENDU
+wOtherTrainerType:: db
 
-	ds 3
+	ds 2
 
 wLinkBattleRNs:: ds 10
 
