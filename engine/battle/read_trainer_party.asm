@@ -134,6 +134,36 @@ ReadTrainerPartyPieces:
 	pop de
 .no_nickname
 
+; dvs?
+	ld a, [wOtherTrainerType]
+	bit TRAINERTYPE_DVS_F, a
+	jr z, .no_dvs
+
+	push hl
+	ld a, [wOTPartyCount]
+	dec a
+	ld hl, wOTPartyMon1DVs
+	call GetPartyLocation
+	ld d, h
+	ld e, l
+	pop hl
+
+; When reading DVs, treat PERFECT_DV as $ff
+	ld a, [hli]
+	cp PERFECT_DV
+	jr nz, .atk_def_dv_ok
+	ld a, $ff
+.atk_def_dv_ok
+	ld [de], a
+	inc de
+	ld a, [hli]
+	cp PERFECT_DV
+	jr nz, .spd_spc_dv_ok
+	ld a, $ff
+.spd_spc_dv_ok
+	ld [de], a
+.no_dvs
+
 ; item?
 	ld a, [wOtherTrainerType]
 	bit TRAINERTYPE_ITEM_F, a
