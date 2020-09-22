@@ -43,12 +43,16 @@ ReadTrainerParty:
 	dec b
 	jr z, .got_trainer
 .loop
-	ld a, [hli]
-	cp -1
-	jr nz, .loop
+	ld a, [wTrainerGroupBank]
+	call GetFarByte
+	add a, l
+	ld l, a
+	jr nc, .skip_trainer
+	inc h
 	jr .skip_trainer
 .got_trainer
-
+	inc hl
+	
 .skip_name
 	ld a, [hli]
 	cp "@"
@@ -316,6 +320,7 @@ Battle_GetTrainerName::
 	ld b, a
 	ld a, [wOtherTrainerClass]
 	ld c, a
+	; fallthrough
 
 GetTrainerName::
 	ld a, c
@@ -349,13 +354,19 @@ GetTrainerName::
 
 .loop
 	dec b
-	jr z, CopyTrainerName
+	jr z, .done
 
-.skip
-	ld a, [hli]
-	cp $ff
-	jr nz, .skip
+	ld a, [wTrainerGroupBank]
+	call GetFarByte
+	add a, l
+	ld l, a
+	jr nc, .loop
+	inc h
 	jr .loop
+
+.done
+	inc hl
+	; fallthrough
 
 CopyTrainerName:
 	ld de, wStringBuffer1
