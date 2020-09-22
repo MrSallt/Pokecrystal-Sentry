@@ -975,8 +975,15 @@ GetMonFramesPointer:
 .got_frames
 	ld a, c
 	ld [wPokeAnimFramesBank], a
-
+	push hl
 	ld a, [wPokeAnimSpeciesOrUnown]
+	ld l, a
+	ld h, 0
+	call nz, GetPokemonIndexFromID
+	ld a, c
+	ld c, l
+	ld b, h
+	pop hl
 	dec a
 	ld e, a
 	ld d, 0
@@ -1007,18 +1014,18 @@ GetMonBitmaskPointer:
 
 	call PokeAnim_IsUnown
 	ld a, BANK(UnownBitmasksPointers)
-	ld hl, UnownBitmasksPointers
+	ld de, UnownBitmasksPointers - 2
 	jr z, .unown
 	ld a, BANK(BitmasksPointers)
-	ld hl, BitmasksPointers
+	ld de, BitmasksPointers - 2
 .unown
 	ld [wPokeAnimBitmaskBank], a
 
 	ld a, [wPokeAnimSpeciesOrUnown]
-	dec a
-	ld e, a
-	ld d, 0
-	add hl, de
+	ld l, a
+	ld h, 0
+	call nz, GetPokemonIndexFromID
+	add hl, hl
 	add hl, de
 	ld a, [wPokeAnimBitmaskBank]
 	call GetFarHalfword
