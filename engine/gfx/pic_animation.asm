@@ -891,27 +891,28 @@ GetMonAnimPointer:
 	jr z, .egg
 
 	ld c, BANK(UnownAnimationPointers) ; aka BANK(UnownAnimationIdlePointers)
-	ld hl, UnownAnimationPointers
-	ld de, UnownAnimationIdlePointers
+	ld hl, UnownAnimationPointers - 2
+	ld de, UnownAnimationIdlePointers - 2
 	call PokeAnim_IsUnown
 	jr z, .unown
 	ld c, BANK(AnimationPointers) ; aka BANK(AnimationIdlePointers)
-	ld hl, AnimationPointers
-	ld de, AnimationIdlePointers
+	ld hl, AnimationPointers - 2
+	ld de, AnimationIdlePointers - 2
 .unown
 
 	ld a, [wPokeAnimIdleFlag]
 	and a
-	jr z, .idles
-	ld h, d
-	ld l, e
-.idles
+	jr nz, .got_pointer
+	ld d, h
+	ld e, l
+.got_pointer
 
+	call PokeAnim_IsUnown
 	ld a, [wPokeAnimSpeciesOrUnown]
-	dec a
-	ld e, a
-	ld d, 0
-	add hl, de
+	ld l, a
+	ld h, 0
+	call nz, GetPokemonIndexFromID
+	add hl, hl
 	add hl, de
 	ld a, c
 	ld [wPokeAnimPointerBank], a
