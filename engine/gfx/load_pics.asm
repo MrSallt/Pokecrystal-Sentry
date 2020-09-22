@@ -102,22 +102,30 @@ _GetFrontpic:
 	pop hl
 	ret
 
-GetFrontpicPointer:
+GetPicIndirectPointer:
 	ld a, [wCurPartySpecies]
 	cp UNOWN
 	jr z, .unown
-	ld a, [wCurPartySpecies]
+	call GetPokemonIndexFromID
+	ld b, h
+	ld c, l
 	ld d, BANK(PokemonPicPointers)
 	jr .ok
 
+.done
+	ld a, 6
+	jp AddNTimes
+
 .unown
 	ld a, [wUnownLetter]
+	ld c, a
+	ld b, 0
+	ld hl, UnownPicPointers - 6
 	ld d, BANK(UnownPicPointers)
+	jr .done
 
-.ok
-	ld hl, PokemonPicPointers ; UnownPicPointers
-	dec a
-	ld bc, 6
+GetFrontpicPointer:
+	call GetPicIndirectPointer
 	call AddNTimes
 	ld a, d
 	call GetFarByte
@@ -197,30 +205,16 @@ GetMonBackpic:
 	call IsAPokemon
 	ret c
 
-	ld a, [wCurPartySpecies]
-	ld b, a
-	ld a, [wUnownLetter]
-	ld c, a
 	ldh a, [rSVBK]
 	push af
+	push de
+	call GetPicIndirectPointer
 	ld a, BANK(wDecompressScratch)
 	ldh [rSVBK], a
-	push de
 
-	; These are assumed to be at the same address in their respective banks.
-	ld hl, PokemonPicPointers ; UnownPicPointers
-	ld a, b
-	ld d, BANK(PokemonPicPointers)
-	cp UNOWN
-	jr nz, .ok
-	ld a, c
-	ld d, BANK(UnownPicPointers)
-.ok
-	dec a
-	ld bc, 6
-	call AddNTimes
-	ld bc, 3
-	add hl, bc
+	inc hl
+	inc hl
+	inc hl
 	ld a, d
 	call GetFarByte
 	call FixPicBank
