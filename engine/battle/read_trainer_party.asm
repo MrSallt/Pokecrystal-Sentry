@@ -89,6 +89,14 @@ ReadTrainerPartyPieces:
 
 ; level
 	ld [wCurPartyLevel], a
+	call GetNextTrainerDataByte
+	push hl
+	push af
+	call GetNextTrainerDataByte
+	ld h, a
+	pop af
+	ld l, a
+	call GetPokemonIDFromInde
 
 ; species
 	ld a, [hli]
@@ -97,9 +105,9 @@ ReadTrainerPartyPieces:
 ; add to party
 	ld a, OTPARTYMON
 	ld [wMonType], a
-	push hl
 	predef TryAddMonToParty
 	pop hl
+	inc hl ;because hl was pushed before the last call to GetNextTrainerDataByte
 
 ; nickname?
 	ld a, [wOtherTrainerType]
