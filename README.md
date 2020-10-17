@@ -1,4 +1,5 @@
-***POKEMON CRYSTAL UPGRADED :***
+**POKEMON CRYSTAL UPGRADED :**
+==============================
 
 BASIC POKECRYSTAL GAME WITH FOLLOWING CONTENTS :
 - Charmap German/French
