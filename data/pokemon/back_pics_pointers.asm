@@ -199,11 +199,7 @@ BackPicPointers::
 	dba_pic MurkrowBackpic
 	dba_pic SlowkingBackpic
 	dba_pic MisdreavusBackpic
-
-	; Unown pics have their own table. See UnownPicPointers
-	dbw -1, -1
-	dbw -1, -1
-
+	dba_pic UnownABackpic
 	dba_pic WobbuffetBackpic
 	dba_pic GirafarigBackpic
 	dba_pic PinecoBackpic
@@ -258,3 +254,30 @@ BackPicPointers::
 	dbw -1, -1 ; unused
 	dba_pic EggPic
 	dbw -1, -1 ; unused
+
+; Variables de Zarbi
+	dba_pic UnownBBackpic
+	dba_pic UnownCBackpic
+	dba_pic UnownDBackpic
+	dba_pic UnownEBackpic
+	dba_pic UnownFBackpic
+	dba_pic UnownGBackpic
+	dba_pic UnownHBackpic
+	dba_pic UnownIBackpic
+	dba_pic UnownJBackpic
+	dba_pic UnownKBackpic
+	dba_pic UnownLBackpic
+	dba_pic UnownMBackpic
+	dba_pic UnownNBackpic
+	dba_pic UnownOBackpic
+	dba_pic UnownPBackpic
+	dba_pic UnownQBackpic
+	dba_pic UnownRBackpic
+	dba_pic UnownSBackpic
+	dba_pic UnownTBackpic
+	dba_pic UnownUBackpic
+	dba_pic UnownVBackpic
+	dba_pic UnownWBackpic
+	dba_pic UnownXBackpic
+	dba_pic UnownYBackpic
+	dba_pic UnownZBackpic
