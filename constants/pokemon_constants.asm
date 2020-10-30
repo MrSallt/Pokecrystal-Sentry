@@ -275,39 +275,32 @@ NUM_POKEMON EQU const_value - 1
 	const_skip       ; fc
 	const EGG        ; fd
 
-; Unown forms
-; indexes for:
-; - UnownWords (see data/pokemon/unown_words.asm)
-; - UnownPicPointers (see data/pokemon/unown_pic_pointers.asm)
-; - UnownAnimationPointers (see gfx/pokemon/unown_anim_pointers.asm)
-; - UnownAnimationIdlePointers (see gfx/pokemon/unown_idle_pointers.asm)
-; - UnownBitmasksPointers (see gfx/pokemon/unown_bitmask_pointers.asm)
-; - UnownFramesPointers (see gfx/pokemon/unown_frame_pointers.asm)
+; unown
 	const_def 1
-	const UNOWN_A ;  1
-	const UNOWN_B ;  2
-	const UNOWN_C ;  3
-	const UNOWN_D ;  4
-	const UNOWN_E ;  5
-	const UNOWN_F ;  6
-	const UNOWN_G ;  7
-	const UNOWN_H ;  8
-	const UNOWN_I ;  9
-	const UNOWN_J ; 10
-	const UNOWN_K ; 11
-	const UNOWN_L ; 12
-	const UNOWN_M ; 13
-	const UNOWN_N ; 14
-	const UNOWN_O ; 15
-	const UNOWN_P ; 16
-	const UNOWN_Q ; 17
-	const UNOWN_R ; 18
-	const UNOWN_S ; 19
-	const UNOWN_T ; 20
-	const UNOWN_U ; 21
-	const UNOWN_V ; 22
-	const UNOWN_W ; 23
-	const UNOWN_X ; 24
-	const UNOWN_Y ; 25
-	const UNOWN_Z ; 26
-NUM_UNOWN EQU const_value - 1 ; 26
+	const UNOWN_A_FORM
+	const UNOWN_B_FORM
+	const UNOWN_C_FORM
+	const UNOWN_D_FORM
+	const UNOWN_E_FORM
+	const UNOWN_F_FORM
+	const UNOWN_G_FORM
+	const UNOWN_H_FORM
+	const UNOWN_I_FORM
+	const UNOWN_J_FORM
+	const UNOWN_K_FORM
+	const UNOWN_L_FORM
+	const UNOWN_M_FORM
+	const UNOWN_N_FORM
+	const UNOWN_O_FORM
+	const UNOWN_P_FORM
+	const UNOWN_Q_FORM
+	const UNOWN_R_FORM
+	const UNOWN_S_FORM
+	const UNOWN_T_FORM
+	const UNOWN_U_FORM
+	const UNOWN_V_FORM
+	const UNOWN_W_FORM
+	const UNOWN_X_FORM
+	const UNOWN_Y_FORM
+	const UNOWN_Z_FORM
+NUM_UNOWN EQU const_value - 1
