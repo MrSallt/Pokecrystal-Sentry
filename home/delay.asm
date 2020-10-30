@@ -1,7 +1,3 @@
-ClearBGPalettes::
-	call ClearPalettes
-	jr ApplyTilemapInVBlank
-
 ApplyAttrmapInVBlank::
 ; Tell VBlank to update Attr Map
 	ld a, 2
