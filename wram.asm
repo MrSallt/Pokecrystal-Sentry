@@ -1421,6 +1421,8 @@ wMonType:: db
 
 wCurSpecies:: db
 
+wCurForm:: db
+
 wNamedObjectTypeBuffer:: db
 
 	ds 1
