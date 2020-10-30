@@ -186,11 +186,9 @@ ROMX $47
 	"Battle Tower"
 ROMX $48
 	org $4000
-	"Pic Pointers"
 	"Pics 1"
 ROMX $49
 	org $4000
-	"Unown Pic Pointers"
 	"Pics 2"
 ROMX $4a
 	"Trainer Pic Pointers"
@@ -300,6 +298,7 @@ ROMX $7b
 	"Battle Tower Text"
 ROMX $7c
 	"Battle Tower Trainer Data"
+	"Pic Pointers"
 ROMX $7d
 	"Mobile News Data"
 ROMX $7e
