@@ -1,3 +1,21 @@
+ClearBGPalettes::
+	call ClearPalettes
+	jr ApplyTilemapInVBlank
+
+ApplyAttrmapInVBlank::
+; Tell VBlank to update Attr Map
+	ld a, 2
+	jr _ApplyAttrOrTilemapInVBlank
+
+ApplyAttrAndTilemapInVBlank::
+	call ApplyAttrmapInVBlank
+
+ApplyTilemapInVBlank::
+; Tell VBlank to update BG Map
+	ld a, 1
+_ApplyAttrOrTilemapInVBlank:
+	ldh [hBGMapMode], a
+
 DelayFrame::
 ; Wait for one frame
 	ld a, 1
@@ -17,3 +35,5 @@ DelayFrames::
 	dec c
 	jr nz, DelayFrames
 	ret
+	
+	
